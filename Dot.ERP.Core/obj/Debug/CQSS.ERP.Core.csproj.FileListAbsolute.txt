@@ -1,0 +1,5 @@
+F:\Demo\CQSS.ERP\CQSS.ERP.Core\obj\Debug\CQSS.ERP.Core.csprojResolveAssemblyReference.cache
+F:\Demo\CQSS.ERP\CQSS.ERP.Core\bin\Debug\CQSS.ERP.Core.dll
+F:\Demo\CQSS.ERP\CQSS.ERP.Core\bin\Debug\CQSS.ERP.Core.pdb
+F:\Demo\CQSS.ERP\CQSS.ERP.Core\obj\Debug\CQSS.ERP.Core.dll
+F:\Demo\CQSS.ERP\CQSS.ERP.Core\obj\Debug\CQSS.ERP.Core.pdb

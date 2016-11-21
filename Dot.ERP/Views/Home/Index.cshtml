@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Home Page";
+}
+
+@section cssSection{
+    <link href="~/Content/desktop-theme-min.css" rel="stylesheet" />
+    <link href="~/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+}
+@section jsSection{
+    <script src="~/Scripts/desktop-script.min.js"></script>
+    <script type="text/javascript">
+        var setFrameUrl = function (control) {
+            var url = $(control).attr("data-url");
+            $.get(url, null, function (conatent) {
+                $(".page-content").html(conatent);
+            }, "html")
+        }
+    </script>
+}
+
+@{Html.RenderAction("Header", "Home");}
+
+<div class="clearfix"></div>
+
+<div class="page-container">
+    <div class="page-sidebar-wrapper">
+        @{Html.RenderAction("Menu", "SystemMenu");}
+    </div>
+    <div class="page-content-wrapper">
+        <div class="page-content" style="min-height: 538px">
+            @{Html.RenderAction("Dashboard", "Home");}
+        </div>
+    </div>
+</div>

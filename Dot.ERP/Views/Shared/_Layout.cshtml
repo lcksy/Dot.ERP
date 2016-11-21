@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <link rel="shortcut icon" href="~/plugins/media/image/favicon.ico" />
+
+    @RenderSection("cssSection", required: false)
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body class="page-header-fixed page-sidebar-fixed  page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
+
+    @RenderBody()
+
+    @RenderSection("jsSection", required: false)
+</body>
+</html>

@@ -1,0 +1,9 @@
+F:\Demo\Dot.ERP\Dot.ERP\bin\ServiceProvider\Dot.ERP.Service.dll
+F:\Demo\Dot.ERP\Dot.ERP\bin\ServiceProvider\Dot.ERP.Service.pdb
+F:\Demo\Dot.ERP\Dot.ERP.Service\obj\Debug\Dot.ERP.Service.dll
+F:\Demo\Dot.ERP\Dot.ERP.Service\obj\Debug\Dot.ERP.Service.pdb
+F:\Demo\Dot.ERP\Dot.ERP.Service\bin\Debug\Dot.ERP.Service.dll
+F:\Demo\Dot.ERP\Dot.ERP.Service\bin\Debug\Dot.ERP.Service.pdb
+F:\Demo\Dot.ERP\Dot.ERP.Service\bin\Debug\Dot.ERP.Objects.dll
+F:\Demo\Dot.ERP\Dot.ERP.Service\bin\Debug\Dot.ERP.Objects.pdb
+F:\Demo\Dot.ERP\Dot.ERP.Service\obj\Debug\Dot.ERP.Service.csprojResolveAssemblyReference.cache

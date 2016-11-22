@@ -6,14 +6,44 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
     <link rel="shortcut icon" href="~/plugins/media/image/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="~/plugins/media/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/plugins/media/css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" type="text/css" href="~/plugins/media/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="~/plugins/media/css/style-metro.css"/>
+    <link rel="stylesheet" type="text/css" href="~/plugins/media/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="~/plugins/media/css/style-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="~/plugins/media/css/default.css"/>
+    <link rel="stylesheet" type="text/css" href="~/plugins/media/css/uniform.default.css"/>
 
     @RenderSection("cssSection", required: false)
-    @Scripts.Render("~/bundles/jquery")
 </head>
-<body class="page-header-fixed page-sidebar-fixed  page-quick-sidebar-over-content page-sidebar-closed-hide-logo">
+<body class="page-header-fixed">
 
     @RenderBody()
 
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript" src="~/plugins/media/js/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/jquery-ui-1.10.1.custom.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/jquery.blockui.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/jquery.cookie.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/jquery.uniform.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/jquery.flot.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/jquery.pulsate.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/date.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/daterangepicker.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/jquery.gritter.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/jquery.easy-pie-chart.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/jquery.sparkline.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/app.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            App.init();
+        });
+    </script>
     @RenderSection("jsSection", required: false)
 </body>
 </html>

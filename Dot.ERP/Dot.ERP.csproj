@@ -631,9 +631,10 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Shared\_PartialLayout.cshtml" />
-    <Content Include="Views\Home\Header.cshtml" />
+    <Content Include="Views\Home\_Header.cshtml" />
     <Content Include="Views\SystemMenu\Menu.cshtml" />
-    <Content Include="Views\SystemMenu\MenuManager.cshtml" />
+    <Content Include="Views\SystemMenu\MenuPage.cshtml" />
+    <Content Include="Views\Home\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

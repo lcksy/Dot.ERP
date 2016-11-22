@@ -20,7 +20,7 @@ namespace Dot.ERP.Controllers
             return PartialView(menus);
         }
 
-        public ActionResult MenuManager()
+        public ActionResult MenuPage()
         {
             var menus = new MenuService().GetMenuData();
 

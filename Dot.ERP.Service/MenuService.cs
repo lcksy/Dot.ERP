@@ -4,20 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dot.ERP.Objects;
-using Dot.ERP.Service.Attribute;
 
 namespace Dot.ERP.Service
 {
     public class MenuService
     {
-        [ServiceProvider]
         public List<Menu> GetMenuData()
         {
             var menus = new List<Menu>() 
             { 
                 new Menu(){SysNo = "0.0", Name = "Dashboard", Url="/Home/Dashboard"},
                 new Menu(){ SysNo = "1.0", Name = "系统管理", Url="", Menus = new List<Menu>(){
-                    new Menu(){SysNo = "1.1", Name = "菜单管理", Url="/SystemMenu/MenuManager"},
+                    new Menu(){SysNo = "1.1", Name = "菜单管理", Url="/SystemMenu/MenuPage"},
                     new Menu(){SysNo = "1.2", Name = "权限中心", Url="/SysMenu/Right"},
                     new Menu(){SysNo = "1.3", Name = "数据权限", Url="/SysMenu/DataPrivilege"},
                     new Menu(){SysNo = "1.4", Name = "底层权限", Url="/SysMenu/AdminMethod"},

@@ -4,32 +4,44 @@
 }
 
 @section cssSection{
-    <link href="~/Content/desktop-theme-min.css" rel="stylesheet" />
-    <link href="~/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
 }
 @section jsSection{
-    <script src="~/Scripts/desktop-script.min.js"></script>
     <script type="text/javascript">
         var setFrameUrl = function (control) {
+            //$("ul.page-sidebar-menu li").removeClass("active");
+            //$("span.selected").remove();
+            //$("ul.page-sidebar-menu li.open").addClass("active");
+            //$(control).parents(".open").find("a:first span.title").after("<span class=\"selected\"></span>");
+            //$(control).parent().addClass("active");
+
             var url = $(control).attr("data-url");
             $.get(url, null, function (conatent) {
-                $(".page-content").html(conatent);
+                $(".row-content").html(conatent);
             }, "html")
         }
     </script>
 }
 
-@{Html.RenderAction("Header", "Home");}
-
-<div class="clearfix"></div>
+@Html.Partial("_Header")
 
 <div class="page-container">
     <div class="page-sidebar-wrapper">
-        @{Html.RenderAction("Menu", "SystemMenu");}
+        @{ Html.RenderAction("Menu", "SystemMenu"); }
     </div>
-    <div class="page-content-wrapper">
-        <div class="page-content" style="min-height: 538px">
-            @{Html.RenderAction("Dashboard", "Home");}
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">
+
+                </div>
+            </div>
+            <div class="row-content">
+                @*@{Html.RenderAction("Dashboard", "Home");}*@
+                @{Html.RenderAction("MenuPage", "SystemMenu");}
+            </div>
         </div>
     </div>
 </div>
+
+@Html.Partial("_Footer")

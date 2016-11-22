@@ -13,11 +13,6 @@ namespace Dot.ERP.Controllers
             return View();
         }
 
-        public ActionResult Header()
-        {
-            return PartialView();
-        } 
-
         public ActionResult Dashboard()
         {
             return PartialView();

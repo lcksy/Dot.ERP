@@ -3,3 +3,8 @@ F:\Demo\Dot.ERP\Dot.ERP.Core\bin\Debug\Dot.ERP.Core.pdb
 F:\Demo\Dot.ERP\Dot.ERP.Core\obj\Debug\Dot.ERP.Core.csprojResolveAssemblyReference.cache
 F:\Demo\Dot.ERP\Dot.ERP.Core\obj\Debug\Dot.ERP.Core.dll
 F:\Demo\Dot.ERP\Dot.ERP.Core\obj\Debug\Dot.ERP.Core.pdb
+F:\GitHub\Dot.ERP\Dot.ERP.Core\bin\Debug\Dot.ERP.Core.dll
+F:\GitHub\Dot.ERP\Dot.ERP.Core\bin\Debug\Dot.ERP.Core.pdb
+F:\GitHub\Dot.ERP\Dot.ERP.Core\obj\Debug\Dot.ERP.Core.csprojResolveAssemblyReference.cache
+F:\GitHub\Dot.ERP\Dot.ERP.Core\obj\Debug\Dot.ERP.Core.dll
+F:\GitHub\Dot.ERP\Dot.ERP.Core\obj\Debug\Dot.ERP.Core.pdb

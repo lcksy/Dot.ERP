@@ -1,63 +1,69 @@
-﻿
-@model List<Dot.ERP.Objects.Menu>
+﻿@model List<Dot.ERP.Objects.Menu>
 
-<div class="page-sidebar navbar-collapse collapse">
-    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 538px;">
-        <ul class="page-sidebar-menu" data-keep-expanded="false" data-auto-scroll="false" data-slide-speed="200" data-height="538" data-initialized="1" style="overflow: hidden; width: auto; height: 538px;">
-            <li class="start active open" data-wmenu="-1">
-                <a href="#">
-                    <i class="icon-speedometer"></i>
-                    <span class="title">仪表盘</span>
-                    <span class="selected"></span>
-                </a>
-            </li>
-            @if (Model != null && Model.Count() > 0)
+<div class="page-sidebar nav-collapse collapse">
+    <ul class="page-sidebar-menu">
+        <li>
+            <div class="sidebar-toggler hidden-phone"></div>
+        </li>
+        <li>
+            <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+            <form class="sidebar-search">
+                <div class="input-box">
+                    <a href="javascript:;" class="remove"></a>
+                    <input type="text" placeholder="Search...">
+                    <input type="button" class="submit" value=" ">
+                </div>
+            </form>
+            <!-- END RESPONSIVE QUICK SEARCH FORM -->
+        </li>
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var first in Model)
             {
-                foreach (var first in Model)
-                {
-                    <li class="">
-                        @if (first.Menus != null && first.Menus.Count() > 0)
-                        {
-                            <a href="javascript:void(0);">
-                                <i class="icon-diamond"> </i>
-                                <span class="title">@first.Name</span>
-                                <span class="arrow"></span>
-                                <span class="selected"></span>
-                            </a>
-                            <ul class="sub-menu" style="">
-                                @foreach (var second in first.Menus)
+                <li class="@(first.SysNo == Model.First().SysNo ? "start active" : "")">
+                    @if (first.Menus != null && first.Menus.Count() > 0)
+                    {
+                        <a href="javascript:void(0);">
+                            <i class="icon-sitemap"></i>
+                            <span class="title">@first.Name</span>
+                            <span class="arrow "></span>
+                        </a>
+                        <ul class="sub-menu">
+                            @foreach (var second in first.Menus)
+                            {
+                                if (second.Menus != null && second.Menus.Count() > 0)
                                 {
-                                    if (second.Menus != null && second.Menus.Count() > 0)
-                                    {
-                                        <li>
-                                            <a href="javascript:void(0)">@second.Name<span class="arrow"></span></a>
-                                            <ul class="sub-menu">
-                                                @foreach (var third in second.Menus)
-                                                {
-                                                    <li><a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(third.Url) ? "javascript:void(0)" : third.Url.Trim())" onclick="setFrameUrl(this)">@third.Name</a></li>
-                                                }
-                                            </ul>
-                                        </li>
-                                    }
-                                    else
-                                    {
-                                        <li><a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(second.Url) ? "javascript:void(0)" : second.Url.Trim())" onclick="setFrameUrl(this)">@second.Name</a></li>
-                                    }
+                                    <li>
+                                        <a href="javascript:void(0)">@second.Name<span class="arrow"></span></a>
+                                        <ul class="sub-menu">
+                                            @foreach (var third in second.Menus)
+                                            {
+                                                <li><a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(third.Url) ? "javascript:void(0)" : third.Url.Trim())" onclick="setFrameUrl(this)">@third.Name</a></li>
+                                            }
+                                        </ul>
+                                    </li>
                                 }
-                            </ul>
-                        }
-                        else
-                        {
-                            <a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(first.Url) ? "javascript:void(0)" : first.Url.Trim())" onclick="setFrameUrl(this)">
-                                <i class=" icon-diamond"></i>
-                                <span class="title">@first.Name</span>
-                            </a>
-                        }
-                    </li>
-                }
+                                else
+                                {
+                                    <li><a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(second.Url) ? "javascript:void(0)" : second.Url.Trim())" onclick="setFrameUrl(this)">@second.Name</a></li>
+                                }
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(first.Url) ? "javascript:void(0)" : first.Url.Trim())" onclick="setFrameUrl(this)">
+                            <i class=" icon-sitemap"></i>
+                            <span class="title">@first.Name</span>
+                            @if (first.SysNo == Model.First().SysNo)
+                            {
+                                <span class="selected"></span>
+                            }
+                        </a>
+                    }
+                </li>
             }
-        </ul>
-        <div class="slimScrollBar" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 307.265px; background: rgb(187, 187, 187);"></div>
-        <div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(234, 234, 234);"></div>
-    </div>
+        }
+
+    </ul>
 </div>

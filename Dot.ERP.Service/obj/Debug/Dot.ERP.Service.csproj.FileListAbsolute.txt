@@ -7,3 +7,10 @@ F:\Demo\Dot.ERP\Dot.ERP.Service\bin\Debug\Dot.ERP.Service.pdb
 F:\Demo\Dot.ERP\Dot.ERP.Service\bin\Debug\Dot.ERP.Objects.dll
 F:\Demo\Dot.ERP\Dot.ERP.Service\bin\Debug\Dot.ERP.Objects.pdb
 F:\Demo\Dot.ERP\Dot.ERP.Service\obj\Debug\Dot.ERP.Service.csprojResolveAssemblyReference.cache
+F:\GitHub\Dot.ERP\Dot.ERP.Service\bin\Debug\Dot.ERP.Service.dll
+F:\GitHub\Dot.ERP\Dot.ERP.Service\bin\Debug\Dot.ERP.Service.pdb
+F:\GitHub\Dot.ERP\Dot.ERP.Service\bin\Debug\Dot.ERP.Objects.dll
+F:\GitHub\Dot.ERP\Dot.ERP.Service\bin\Debug\Dot.ERP.Objects.pdb
+F:\GitHub\Dot.ERP\Dot.ERP.Service\obj\Debug\Dot.ERP.Service.csprojResolveAssemblyReference.cache
+F:\GitHub\Dot.ERP\Dot.ERP.Service\obj\Debug\Dot.ERP.Service.dll
+F:\GitHub\Dot.ERP\Dot.ERP.Service\obj\Debug\Dot.ERP.Service.pdb

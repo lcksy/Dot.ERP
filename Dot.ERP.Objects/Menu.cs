@@ -11,6 +11,7 @@ namespace Dot.ERP.Objects
         public string SysNo { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
+        public string Operation { get; set; }
         public List<Menu> Menus { get; set; }
     }
 }

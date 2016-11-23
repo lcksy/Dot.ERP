@@ -24,11 +24,11 @@ var TableAdvanced = function () {
         nCloneTd.innerHTML = '<span class="row-details row-details-close"></span>';
          
         $('#sample_1 thead tr').each( function () {
-            this.insertBefore( nCloneTh, this.childNodes[0] );
+            this.insertBefore(nCloneTh, this.childNodes[0]);
         } );
          
         $('#sample_1 tbody tr').each( function () {
-            this.insertBefore(  nCloneTd.cloneNode( true ), this.childNodes[0] );
+            this.insertBefore(nCloneTd.cloneNode( true ), this.childNodes[0] );
         } );
          
         /*

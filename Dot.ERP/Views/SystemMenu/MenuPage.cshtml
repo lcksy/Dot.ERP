@@ -5,14 +5,99 @@
 }
 
 @section cssSection{
-    <link rel="stylesheet" type="text/css" href="~/plugins/media/css/select2_metro.css" />
-    <link rel="stylesheet" type="text/css" href="~/plugins/media/css/DT_bootstrap.css" />
+
 }
 
 @section jsSection{
-    <script type="text/javascript" src="~/plugins/media/js/select2.min.js"></script>
-    <script type="text/javascript" src="~/plugins/media/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="~/plugins/media/js/DT_bootstrap.js"></script>
+    @*<script type="text/javascript" src="~/plugins/media/js/jquery.dataTables.min.js"></script>*@
+    <script type="text/javascript" src="~/plugins/media/js/jquery.dataTables.js"></script>
+
+    <script type="text/javascript">
+        $.fn.metronicGrid = function (options)
+        {
+            var dataTable = $(this).dataTable({
+                "bLengthChange": false, //改变每页显示数据数量
+                "bFilter": false, //过滤功能
+                "bProcessing": true, //开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
+                "bServerSide": true, //开启服务器模式，使用服务器端处理配置datatable。注意：sAjaxSource参数也必须被给予为了给datatable源代码来获取所需的数据对于每个画。 这个翻译有点别扭。
+                "iDisplayLength": options.pageSize,//每页显示10条数据
+                "sAjaxSource": options.url,// get地址
+                "fnServerData": function retrieveData(sSource, aoData, fnCallback) { //执行方法
+                    $.ajax({
+                        "type": "get",
+                        "contentType": "application/json",
+                        "url": sSource,
+                        "dataType": "json",
+                        "data": aoData,
+                        "success": function (resp) {
+                            fnCallback(resp); //服务器端返回的对象的returnObject部分是要求的格式  
+                        }
+                    });
+                },
+                //默认排序
+                "aaSorting": [
+                    [0, 'asc'],//第一列正序
+                    [1, 'desc']//第二列倒序
+                ],
+                "pageLength": options.pageSize,
+                //向服务器传额外的参数
+                "fnServerParams": function (aoData) {
+                    if (aoData == null)
+                        return;
+                    else
+                        aoData.push(options.params);
+                },
+                "sPaginationType": "full_numbers",
+                //配置列要显示的数据
+                "aoColumns": options.columns,
+                //语言配置--页面显示的文字
+                "oLanguage": {
+                    "aria": {
+                        "sortAscending": ": activate to sort column ascending",
+                        "sortDescending": ": activate to sort column descending"
+                    },
+                    "sProcessing": "数据加载中... ...",
+                    "sEmptyTable": "没有找到可用数据",
+                    "sInfo": "共 _TOTAL_ 条记录，当前页面显示 _START_-_END_",
+                    "sInfoEmpty": "No entries found",
+                    "sInfoFiltered": "(filtered1 from _MAX_ total entries)",
+                    "sLengthMenu": "Show _MENU_ entries",
+                    "sSearch": "Search:",
+                    "sZeroRecords": "No matching records found",
+                    //分页
+                    "oPaginate": {
+                        "sFirst": "首页",
+                        "sPrevious": "前一页",
+                        "sNext": "后一页",
+                        "sLast": "尾页"
+                    },
+                }
+            });
+
+            //刷新Datatable，会自动激发retrieveData
+            //dataTable.fnDraw();
+
+            return dataTable;
+        }
+
+        var dataTable = $("#mainTable").metronicGrid({
+            columns: [
+                { "mDataProp": "Operation", "sTitle": "操作", "fnRender": function (obj) { return "<a href='#'>查看</a>&nbsp;&nbsp;<a href='#'>删除</a>&nbsp;&nbsp;<a href='#'>编辑</a>"; } },
+                { "mDataProp": "SysNo", "sTitle": "系统编号", "sDefaultContent": "", "sClass": "center" },
+                { "mDataProp": "Name", "sTitle": "菜单名称", "sDefaultContent": "", "sClass": "center" },
+                { "mDataProp": "Url", "sTitle": "页面地址", "sDefaultContent": "", "sClass": "hidden-480 center" }
+            ],
+            pageSize: 10,
+            url: Dot.GetHandlerURL({
+                type: "MenuService",
+                method: "GetMenuData"
+            })
+        });
+    </script>
 }
 
-<h1>Menu Page</h1>
+<div class="row-fluid">
+    <div class="span12">
+        <table class="table table-striped table-bordered table-hover table-full-width" id="mainTable"></table>
+    </div>
+</div>

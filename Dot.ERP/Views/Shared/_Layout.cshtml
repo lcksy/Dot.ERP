@@ -16,12 +16,13 @@
     <link rel="stylesheet" type="text/css" href="~/plugins/media/css/uniform.default.css"/>
 
     @RenderSection("cssSection", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript" src="~/Scripts/ajax.js"></script>
 </head>
 <body class="page-header-fixed">
 
     @RenderBody()
 
-    @Scripts.Render("~/bundles/jquery")
     <script type="text/javascript" src="~/plugins/media/js/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="~/plugins/media/js/jquery-ui-1.10.1.custom.min.js"></script>
     <script type="text/javascript" src="~/plugins/media/js/bootstrap.min.js"></script>
@@ -39,11 +40,8 @@
     <script type="text/javascript" src="~/plugins/media/js/jquery.easy-pie-chart.js"></script>
     <script type="text/javascript" src="~/plugins/media/js/jquery.sparkline.min.js"></script>
     <script type="text/javascript" src="~/plugins/media/js/app.js"></script>
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-            App.init();
-        });
-    </script>
+    <script type="text/javascript" src="~/plugins/media/js/index.js"></script>
+
     @RenderSection("jsSection", required: false)
 </body>
 </html>

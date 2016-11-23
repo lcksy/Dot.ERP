@@ -1,5 +1,6 @@
 ﻿using Dot.ERP.Core.Ajax;
 using Dot.ERP.Manager.Attributes;
+using Dot.ERP.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +30,19 @@ namespace Dot.ERP.Controllers
         {
             this.context = this.HttpContext;
 
-            var result = Run(context);
-            
-            return Json(result);
+            var data = Run(context);
+
+            var result = new DataResult();
+            result.recordsTotal = 25;
+            result.recordsFiltered = 25;
+            result.iTotalDisplayRecords = 25;
+            result.iTotalRecords = 25;
+            result.aaData = data;
+            result.draw = 10;
+
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(result);
+
+            return Content(json);
         }
 
         private object Run(HttpContextBase context)

@@ -633,8 +633,8 @@
     <Content Include="Views\Shared\_PartialLayout.cshtml" />
     <Content Include="Views\Home\_Header.cshtml" />
     <Content Include="Views\SystemMenu\Menu.cshtml" />
-    <Content Include="Views\SystemMenu\MenuPage.cshtml" />
     <Content Include="Views\Home\_Footer.cshtml" />
+    <Content Include="Views\SystemMenu\MenuPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

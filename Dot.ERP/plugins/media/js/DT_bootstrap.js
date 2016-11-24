@@ -42,64 +42,66 @@ $.extend( $.fn.dataTableExt.oPagination, {
 			};
 
 			$(nPaging).addClass('pagination').append(
-				'<ul>'+
-					'<li class="prev disabled"><a href="#">&larr; <span class="hidden-480">'+oLang.sPrevious+'</span></a></li>'+
-					'<li class="next disabled"><a href="#"><span class="hidden-480">'+oLang.sNext+'</span> &rarr; </a></li>'+
+				'<ul>' +
+                    '<li class="first disabled"><a href="#"><span class="icon-step-backward"></span> <span class="hidden-480"></span></a></li>' +
+					'<li class="prev disabled"><a href="#"><span class="icon-backward"></span> <span class="hidden-480"></span></a></li>' +
+                    '<li class="active"></li>' +
+					'<li class="next disabled"><a href="#"><span class="hidden-480"></span> <span class="icon-forward"></span></a></li>' +
+                    '<li class="last disabled"><a href="#"><span class="hidden-480"></span> <span class="icon-step-forward"></span></a></li>' +
 				'</ul>'
 			);
 			var els = $('a', nPaging);
-			$(els[0]).bind( 'click.DT', { action: "previous" }, fnClickHandler );
-			$(els[1]).bind( 'click.DT', { action: "next" }, fnClickHandler );
+			$(els[0]).bind('click.DT', { action: "first" }, fnClickHandler);
+			$(els[1]).bind('click.DT', { action: "previous" }, fnClickHandler );
+			$(els[2]).bind('click.DT', { action: "next" }, fnClickHandler);
+			$(els[3]).bind('click.DT', { action: "last" }, fnClickHandler);
 		},
 
-		"fnUpdate": function ( oSettings, fnDraw ) {
-			var iListLength = 5;
-			var oPaging = oSettings.oInstance.fnPagingInfo();
+		"fnUpdate": function (oSettings, fnDraw) {
+		    var iListLength = 5;
+		    var oPaging = oSettings.oInstance.fnPagingInfo();
 			var an = oSettings.aanFeatures.p;
-			var i, j, sClass, iStart, iEnd, iHalf=Math.floor(iListLength/2);
 
-			if ( oPaging.iTotalPages < iListLength) {
-				iStart = 1;
-				iEnd = oPaging.iTotalPages;
-			}
-			else if ( oPaging.iPage <= iHalf ) {
-				iStart = 1;
-				iEnd = iListLength;
-			} else if ( oPaging.iPage >= (oPaging.iTotalPages-iHalf) ) {
-				iStart = oPaging.iTotalPages - iListLength + 1;
-				iEnd = oPaging.iTotalPages;
-			} else {
-				iStart = oPaging.iPage - iHalf + 1;
-				iEnd = iStart + iListLength - 1;
-			}
+			if (oPaging.iPage <= 0)
+			    oPaging.iPage = 0;
+			else if (oPaging.iPage > oPaging.iTotalPages)
+			    oPaging.iPage = oPaging.iTotalPages;
 
 			for ( i=0, iLen=an.length ; i<iLen ; i++ ) {
 				// Remove the middle elements
-				$('li:gt(0)', an[i]).filter(':not(:last)').remove();
+			    $('li.active input', an[i]).remove();
 
 				// Add the new list items and their event handlers
-				for ( j=iStart ; j<=iEnd ; j++ ) {
-					sClass = (j==oPaging.iPage+1) ? 'class="active"' : '';
-					$('<li '+sClass+'><a href="#">'+j+'</a></li>')
-						.insertBefore( $('li:last', an[i])[0] )
-						.bind('click', function (e) {
-							e.preventDefault();
-							oSettings._iDisplayStart = (parseInt($('a', this).text(),10)-1) * oPaging.iLength;
-							fnDraw( oSettings );
-						} );
-				}
+			    $('<input style="float:left;border:1px solid #ddd;border-left-style:none;text-align:center;width:30px;height:20px;" type="text" value="' + (oPaging.iPage + 1) + '"/>')
+                    .appendTo($('li.active', an[i])[0])
+                    .bind('blur', function (e) {
+                        e.preventDefault();
+                        var currpage = parseInt(e.currentTarget.value, 10);
+
+                        if (currpage <= 0 || isNaN(currpage)) 
+                            currpage = oPaging.iPage + 1;
+                        else if (currpage > oPaging.iTotalPages) 
+                            currpage = oPaging.iTotalPages;
+
+                        oSettings._iDisplayStart = (currpage - 1) * oPaging.iLength;
+                        fnDraw(oSettings);
+                    });
 
 				// Add / remove disabled classes from the static elements
 				if ( oPaging.iPage === 0 ) {
-					$('li:first', an[i]).addClass('disabled');
+				    $('li.first', an[i]).addClass('disabled');
+				    $('li.prev', an[i]).addClass('disabled');
 				} else {
-					$('li:first', an[i]).removeClass('disabled');
+				    $('li:first', an[i]).removeClass('disabled');
+				    $('li.prev', an[i]).removeClass('disabled');
 				}
 
 				if ( oPaging.iPage === oPaging.iTotalPages-1 || oPaging.iTotalPages === 0 ) {
-					$('li:last', an[i]).addClass('disabled');
+				    $('li.next', an[i]).addClass('disabled');
+				    $('li.last', an[i]).addClass('disabled');
 				} else {
-					$('li:last', an[i]).removeClass('disabled');
+				    $('li.next', an[i]).removeClass('disabled');
+				    $('li.last', an[i]).removeClass('disabled');
 				}
 			}
 		}

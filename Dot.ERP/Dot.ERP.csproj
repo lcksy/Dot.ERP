@@ -170,7 +170,6 @@
   <ItemGroup>
     <Content Include="Content\styles\animate.min.css" />
     <Content Include="Content\styles\default.css" />
-    <Content Include="Content\desktop-theme-min.css" />
     <Content Include="Content\styles\font-awesome.min.css" />
     <Content Include="Content\styles\googleapis.css" />
     <Content Include="Content\styles\ionicons.min.css" />
@@ -602,7 +601,6 @@
     <Content Include="plugins\media\js\wysihtml5-0.3.0.js" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Scripts\apps.min.js" />
-    <Content Include="Scripts\desktop-script.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

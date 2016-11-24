@@ -5,12 +5,13 @@
 }
 
 @section cssSection{
-
+    <link href="~/plugins/media/css/DT_bootstrap.css" rel="stylesheet" />
 }
 
 @section jsSection{
     @*<script type="text/javascript" src="~/plugins/media/js/jquery.dataTables.min.js"></script>*@
     <script type="text/javascript" src="~/plugins/media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/DT_bootstrap.js"></script>
 
     <script type="text/javascript">
         $.fn.metronicGrid = function (options)
@@ -47,7 +48,6 @@
                     else
                         aoData.push(options.params);
                 },
-                "sPaginationType": "full_numbers",
                 //配置列要显示的数据
                 "aoColumns": options.columns,
                 //语言配置--页面显示的文字
@@ -63,14 +63,7 @@
                     "sInfoFiltered": "(filtered1 from _MAX_ total entries)",
                     "sLengthMenu": "Show _MENU_ entries",
                     "sSearch": "Search:",
-                    "sZeroRecords": "No matching records found",
-                    //分页
-                    "oPaginate": {
-                        "sFirst": "首页",
-                        "sPrevious": "前一页",
-                        "sNext": "后一页",
-                        "sLast": "尾页"
-                    },
+                    "sZeroRecords": "No matching records found"
                 }
             });
 
@@ -81,6 +74,7 @@
         }
 
         var dataTable = $("#mainTable").metronicGrid({
+            
             columns: [
                 { "mDataProp": "Operation", "sTitle": "操作", "fnRender": function (obj) { return "<a href='#'>查看</a>&nbsp;&nbsp;<a href='#'>删除</a>&nbsp;&nbsp;<a href='#'>编辑</a>"; } },
                 { "mDataProp": "SysNo", "sTitle": "系统编号", "sDefaultContent": "", "sClass": "center" },

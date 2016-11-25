@@ -1,4 +1,4 @@
-﻿@model List<Dot.ERP.Objects.Menu>
+﻿@model List<Dot.ERP.Objects.SysMenu>
 
 <div class="page-sidebar nav-collapse collapse">
     <ul class="page-sidebar-menu">
@@ -21,39 +21,39 @@
             foreach (var first in Model)
             {
                 <li class="@(first.SysNo == Model.First().SysNo ? "start active" : "")">
-                    @if (first.Menus != null && first.Menus.Count() > 0)
+                    @if (first.ChildMenu != null && first.ChildMenu.Count() > 0)
                     {
                         <a href="javascript:void(0);">
-                            <i class="icon-sitemap"></i>
+                            <i class="@first.Icon"></i>
                             <span class="title">@first.Name</span>
                             <span class="arrow "></span>
                         </a>
                         <ul class="sub-menu">
-                            @foreach (var second in first.Menus)
+                            @foreach (var second in first.ChildMenu)
                             {
-                                if (second.Menus != null && second.Menus.Count() > 0)
+                                if (second.ChildMenu != null && second.ChildMenu.Count() > 0)
                                 {
                                     <li>
                                         <a href="javascript:void(0)">@second.Name<span class="arrow"></span></a>
                                         <ul class="sub-menu">
-                                            @foreach (var third in second.Menus)
+                                            @foreach (var third in second.ChildMenu)
                                             {
-                                                <li><a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(third.Url) ? "javascript:void(0)" : third.Url.Trim())" onclick="setFrameUrl(this)">@third.Name</a></li>
+                                                <li><a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(third.Href) ? "javascript:void(0)" : third.Href.Trim())" onclick="setFrameUrl(this)">@third.Name</a></li>
                                             }
                                         </ul>
                                     </li>
                                 }
                                 else
                                 {
-                                    <li><a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(second.Url) ? "javascript:void(0)" : second.Url.Trim())" onclick="setFrameUrl(this)">@second.Name</a></li>
+                                    <li><a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(second.Href) ? "javascript:void(0)" : second.Href.Trim())" onclick="setFrameUrl(this)">@second.Name</a></li>
                                 }
                             }
                         </ul>
                     }
                     else
                     {
-                        <a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(first.Url) ? "javascript:void(0)" : first.Url.Trim())" onclick="setFrameUrl(this)">
-                            <i class=" icon-sitemap"></i>
+                        <a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(first.Href) ? "javascript:void(0)" : first.Href.Trim())" onclick="setFrameUrl(this)">
+                            <i class="@first.Icon"></i>
                             <span class="title">@first.Name</span>
                             @if (first.SysNo == Model.First().SysNo)
                             {

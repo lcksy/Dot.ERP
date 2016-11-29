@@ -50,4 +50,18 @@
             }
         });
     }
+
+    Dot.getPageMenuNo = function () {
+
+    }
+
+    //增加搜索按钮,并创建事件
+    Dot.appendSearchButtons = function (form, table) {
+
+    }
+
+    //加载toolbar
+    Dot.loadToolbar = function (grid, toolbarBtnItemClick) {
+        var MenuNo = Dot.getPageMenuNo();
+    }
 })(jQuery);

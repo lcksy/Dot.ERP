@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>Dat.ERP.Database</Name>
+    <Name>Dot.ERP.Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{76a006a9-512e-41a8-b364-940cea4a7a4c}</ProjectGuid>
@@ -12,8 +12,8 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>Dat.ERP.Database</RootNamespace>
-    <AssemblyName>Dat.ERP.Database</AssemblyName>
+    <RootNamespace>Dot.ERP.Database</RootNamespace>
+    <AssemblyName>Dot.ERP.Database</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -23,6 +23,7 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <TargetDatabase>Dot.ERP.Database</TargetDatabase>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -62,8 +63,13 @@
     <Folder Include="Views" />
     <Folder Include="Functions" />
     <Folder Include="Triggers" />
+    <Folder Include="Manage" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Sys_Menu.sql" />
+    <Build Include="Tables\Sys_Buttons.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Manage\Alter Table.sql" />
   </ItemGroup>
 </Project>

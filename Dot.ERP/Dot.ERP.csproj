@@ -599,6 +599,7 @@
     <Content Include="plugins\media\js\ui-sliders.js" />
     <Content Include="plugins\media\js\ui-tree.js" />
     <Content Include="plugins\media\js\wysihtml5-0.3.0.js" />
+    <Content Include="plugins\media\metronic\metronicGrid.js" />
     <Content Include="Scripts\ajax.js" />
     <Content Include="Scripts\apps.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -633,6 +634,7 @@
     <Content Include="Views\SystemMenu\Menu.cshtml" />
     <Content Include="Views\Home\_Footer.cshtml" />
     <Content Include="Views\SystemMenu\MenuPage.cshtml" />
+    <Content Include="Views\Shared\_PartialModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

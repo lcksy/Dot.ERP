@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dot.ERP.Service", "Dot.ERP.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dot.ERP.Objects", "Dot.ERP.Objects\Dot.ERP.Objects.csproj", "{76409750-C980-4824-BF66-2271179F85FB}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Dat.ERP.Database", "Dat.ERP.Database\Dat.ERP.Database.sqlproj", "{76A006A9-512E-41A8-B364-940CEA4A7A4C}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Dot.ERP.Database", "Dot.ERP.Database\Dot.ERP.Database.sqlproj", "{76A006A9-512E-41A8-B364-940CEA4A7A4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

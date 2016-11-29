@@ -16,7 +16,8 @@
             //$(control).parent().addClass("active");
 
             var url = $(control).attr("data-url");
-            $.get(url, null, function (conatent) {
+            var menuNo = $(control).attr("data-menuno");
+            $.get(url, { menuNo: menuNo }, function (conatent) {
                 $(".row-content").html(conatent);
             }, "html")
         }

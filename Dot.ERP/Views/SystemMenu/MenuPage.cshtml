@@ -5,76 +5,107 @@
 }
 
 @section cssSection{
-    <link href="~/plugins/media/css/DT_bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/plugins/media/css/DT_bootstrap.css" />
+
+    <link rel="stylesheet" href="~/plugins/media/css/bootstrap-modal.css" />
 }
 
 @section jsSection{
     @*<script type="text/javascript" src="~/plugins/media/js/jquery.dataTables.min.js"></script>*@
     <script type="text/javascript" src="~/plugins/media/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="~/plugins/media/js/DT_bootstrap.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/DT_bootstrap.js"></script> 
 
     <script type="text/javascript">
-        $.fn.metronicGrid = function (options)
-        {
-            var dataTable = $(this).dataTable({
-                "bLengthChange": false, //改变每页显示数据数量
-                "bFilter": false, //过滤功能
-                "bProcessing": true, //开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
-                "bServerSide": true, //开启服务器模式，使用服务器端处理配置datatable。注意：sAjaxSource参数也必须被给予为了给datatable源代码来获取所需的数据对于每个画。 这个翻译有点别扭。
-                "iDisplayLength": options.pageSize,//每页显示10条数据
-                "sAjaxSource": options.url,// get地址
-                "fnServerData": function retrieveData(sSource, aoData, fnCallback) { //执行方法
-                    $.ajax({
-                        "type": "get",
-                        "contentType": "application/json",
-                        "url": sSource,
-                        "dataType": "json",
-                        "data": aoData,
-                        "success": function (resp) {
-                            fnCallback(resp); //服务器端返回的对象的returnObject部分是要求的格式  
-                        }
-                    });
-                },
-                //默认排序
-                "aaSorting": [
-                    [0, 'asc'],//第一列正序
-                    [1, 'desc']//第二列倒序
-                ],
-                "pageLength": options.pageSize,
-                //向服务器传额外的参数
-                "fnServerParams": function (aoData) {
-                    if (aoData == null)
-                        return;
-                    else
-                        aoData.push(options.params);
-                },
-                //配置列要显示的数据
-                "aoColumns": options.columns,
-                //语言配置--页面显示的文字
-                "oLanguage": {
-                    "aria": {
-                        "sortAscending": ": activate to sort column ascending",
-                        "sortDescending": ": activate to sort column descending"
+        $.fn.metronicGrid = function (options) {
+            $options = $.extend({
+                dataTable: {
+                    "bLengthChange": false, //改变每页显示数据数量
+                    "bFilter": false, //过滤功能
+                    "bProcessing": true, //开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
+                    "bServerSide": true, //开启服务器模式，使用服务器端处理配置datatable。注意：sAjaxSource参数也必须被给予为了给datatable源代码来获取所需的数据对于每个画。 这个翻译有点别扭。
+                    "iDisplayLength": options.pageSize,//每页显示10条数据
+                    "sAjaxSource": options.url,// get地址
+                    "fnServerData": function retrieveData(sSource, aoData, fnCallback) { //执行方法
+                        $.ajax({
+                            "type": "get",
+                            "contentType": "application/json",
+                            "url": sSource,
+                            "dataType": "json",
+                            "data": aoData,
+                            "success": function (resp) {
+                                fnCallback(resp); //服务器端返回的对象的returnObject部分是要求的格式  
+                            }
+                        });
                     },
-                    "sProcessing": "数据加载中... ...",
-                    "sEmptyTable": "没有找到可用数据",
-                    "sInfo": "共 _TOTAL_ 条记录，当前页面显示 _START_-_END_",
-                    "sInfoEmpty": "No entries found",
-                    "sInfoFiltered": "(filtered1 from _MAX_ total entries)",
-                    "sLengthMenu": "Show _MENU_ entries",
-                    "sSearch": "Search:",
-                    "sZeroRecords": "No matching records found"
-                }
-            });
+                    //默认排序
+                    "aaSorting": [
+                        [0, 'asc'],//第一列正序
+                        [1, 'desc']//第二列倒序
+                    ],
+                    "pageLength": options.pageSize,
+                    //向服务器传额外的参数
+                    "fnServerParams": function (aoData) {
+                        if (aoData == null)
+                            return;
+                        else
+                            aoData.push(options.params);
+                    },
+                    //配置列要显示的数据
+                    "aoColumns": options.columns,
+                    //语言配置--页面显示的文字
+                    "oLanguage": {
+                        "aria": {
+                            "sortAscending": ": activate to sort column ascending",
+                            "sortDescending": ": activate to sort column descending"
+                        },
+                        "sProcessing": "数据加载中... ...",
+                        "sEmptyTable": "没有找到可用数据",
+                        "sInfo": "共 _TOTAL_ 条记录，当前页面显示 _START_-_END_",
+                        "sInfoEmpty": "No entries found",
+                        "sInfoFiltered": "(filtered1 from _MAX_ total entries)",
+                        "sLengthMenu": "Show _MENU_ entries",
+                        "sSearch": "Search:",
+                        "sZeroRecords": "No matching records found"
+                    }
+                },
+                toolBars: options.toolBars
+            })
+            var dataTable = $(this).addClass("table table-striped table-bordered table-hover table-full-width")
+                                   .dataTable($options.dataTable)
+                                   .toolBars($options.toolBars);
 
             //刷新Datatable，会自动激发retrieveData
             //dataTable.fnDraw();
 
             return dataTable;
+        };
+
+        $.fn.toolBars = function (buttons) {
+            $span = $("<span></span>");
+            for (var i = 0; i < buttons.length; i++) {
+                var html = '<button class=\"' + buttons[i].class + '\"><i class=\"' + buttons[i].icon + '\"></i><span style="margin-left:5px;">' + buttons[i].name + '</span></button>';
+                $(html).on("click", buttons[i].click);  //?
+                $span.append($(html));
+            }
+
+            $("#mainTable_wrapper div.span6").first().append($span);
         }
 
+        //表格结构
         var dataTable = $("#mainTable").metronicGrid({
-            
+            toolBars: [
+                { "class": "btn purple", "icon": "icon-search", "name": "搜索1", click: function () { alert("1"); } },
+                { "class": "btn purple", "icon": "icon-search", "name": "搜索2", click: function () { alert("2"); } },
+                { "class": "btn purple", "icon": "icon-search", "name": "搜索3", click: function () { alert("3"); } },
+                { "class": "btn purple", "icon": "icon-search", "name": "搜索4", click: function () { alert("4"); } },
+                { "class": "btn purple", "icon": "icon-search", "name": "搜索5", click: function () { alert("5"); } },
+                { "class": "btn purple", "icon": "icon-search", "name": "搜索6", click: function () { alert("6"); } },
+                { "class": "btn purple", "icon": "icon-search", "name": "搜索7", click: function () { alert("7"); } },
+                { "class": "btn purple", "icon": "icon-search", "name": "搜索8", click: function () { alert("8"); } },
+                { "class": "btn purple", "icon": "icon-search", "name": "搜索8", click: function () { alert("9"); } },
+                { "class": "btn purple", "icon": "icon-search", "name": "搜索8", click: function () { alert("10"); } },
+                { "class": "btn purple", "icon": "icon-search", "name": "搜索8", click: function () { alert("11"); } }
+            ],
             columns: [
                 { "mDataProp": "Operation", "sTitle": "操作", "fnRender": function (obj) { return "<a href='#'>查看</a>&nbsp;&nbsp;<a href='#'>删除</a>&nbsp;&nbsp;<a href='#'>编辑</a>"; } },
                 { "mDataProp": "SysNo", "sTitle": "系统编号", "sDefaultContent": "", "sClass": "center" },
@@ -87,11 +118,18 @@
                 method: "GetMenuData"
             })
         });
+
+        //增加搜索按钮,并创建事件
+        Dot.appendSearchButtons("#formsearch", dataTable);
+
+        //加载toolbar
+        //Dot.loadToolbar(dataTable, toolbarBtnItemClick);
+
     </script>
 }
 
 <div class="row-fluid">
     <div class="span12">
-        <table class="table table-striped table-bordered table-hover table-full-width" id="mainTable"></table>
+        <table id="mainTable"></table>
     </div>
 </div>

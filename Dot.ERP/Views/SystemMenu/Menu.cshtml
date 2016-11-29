@@ -38,21 +38,21 @@
                                         <ul class="sub-menu">
                                             @foreach (var third in second.ChildMenu)
                                             {
-                                                <li><a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(third.Href) ? "javascript:void(0)" : third.Href.Trim())" onclick="setFrameUrl(this)">@third.Name</a></li>
+                                                <li><a href="javascript:void(0);" data-menuno="@(third.MenuNo)" data-url="@(string.IsNullOrEmpty(third.Href) ? "javascript:void(0)" : third.Href.Trim())" onclick="setFrameUrl(this)">@third.Name</a></li>
                                             }
                                         </ul>
                                     </li>
                                 }
                                 else
                                 {
-                                    <li><a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(second.Href) ? "javascript:void(0)" : second.Href.Trim())" onclick="setFrameUrl(this)">@second.Name</a></li>
+                                    <li><a href="javascript:void(0);" data-menuno="@(second.MenuNo)" data-url="@(string.IsNullOrEmpty(second.Href) ? "javascript:void(0)" : second.Href.Trim())" onclick="setFrameUrl(this)">@second.Name</a></li>
                                 }
                             }
                         </ul>
                     }
                     else
                     {
-                        <a href="javascript:void(0);" data-url="@(string.IsNullOrEmpty(first.Href) ? "javascript:void(0)" : first.Href.Trim())" onclick="setFrameUrl(this)">
+                        <a href="javascript:void(0);" data-menuno="@(first.MenuNo)" data-url="@(string.IsNullOrEmpty(first.Href) ? "javascript:void(0)" : first.Href.Trim())" onclick="setFrameUrl(this)">
                             <i class="@first.Icon"></i>
                             <span class="title">@first.Name</span>
                             @if (first.SysNo == Model.First().SysNo)

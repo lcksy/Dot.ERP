@@ -6,5 +6,6 @@
     [Status] INT NOT NULL, 
     [Name] VARCHAR(20) NOT NULL, 
     [Href] VARCHAR(50) NULL, 
-    [Icon] VARCHAR(50) NULL
+    [Icon] VARCHAR(50) NULL,
+    [MenuNo] VARCHAR(50) NULL
 )

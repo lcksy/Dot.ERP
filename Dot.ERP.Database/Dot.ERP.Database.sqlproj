@@ -68,5 +68,6 @@
   <ItemGroup>
     <Build Include="Tables\Sys_Menu.sql" />
     <Build Include="Manage\Alter Table.sql" />
+    <Build Include="Tables\Sys_Buttons.sql" />
   </ItemGroup>
 </Project>

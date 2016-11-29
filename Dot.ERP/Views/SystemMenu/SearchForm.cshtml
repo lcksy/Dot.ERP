@@ -1,0 +1,38 @@
+﻿@model List<Dot.ERP.Objects.SysMenu>
+
+@{
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
+}
+@section cssSection{
+    <link rel="stylesheet" href="~/plugins/media/css/chosen.css" />
+}
+@section jsSection{
+    <script type="text/javascript" src="~/plugins/media/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/additional-methods.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/select2.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/chosen.jquery.min.js"></script>
+    <script type="text/javascript" src="~/plugins/media/js/form-validation.js"></script>
+}
+
+@using (Html.BeginForm("SearchSubmitForm", "SystemMenu", FormMethod.Post, new { name = "searchSubmitForm", id = "form_sample_2", @class = "form-horizontal" }))
+{
+    <div class="control-group">
+        <label class="control-label">Name<span class="required">*</span></label>
+        <div class="controls">
+            <input type="text" name="name" data-required="1" class="span6 m-wrap" />
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <label class="control-label">Email<span class="required">*</span></label>
+        <div class="controls">
+            <input name="email" type="text" class="span6 m-wrap" />
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn green">Validate</button>
+        <button type="button" class="btn">Cancel</button>
+    </div>
+}

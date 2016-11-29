@@ -634,7 +634,8 @@
     <Content Include="Views\SystemMenu\Menu.cshtml" />
     <Content Include="Views\Home\_Footer.cshtml" />
     <Content Include="Views\SystemMenu\MenuPage.cshtml" />
-    <Content Include="Views\Shared\_PartialModal.cshtml" />
+    <Content Include="Views\Shared\PartialModal.cshtml" />
+    <Content Include="Views\SystemMenu\SearchForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

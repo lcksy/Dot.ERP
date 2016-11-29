@@ -4,6 +4,5 @@
     ButtonName VARCHAR(20) NOT NULL,
     [ButtonNo] VARCHAR(20) NOT NULL,
     [ButtonIcon] VARCHAR(20) NOT NULL,
-    [MenuNo] VARCHAR(50) NULL,
-    [CreateBy] VARCHAR(50) NULL
+    [MenuNo] VARCHAR(50) NULL
 )

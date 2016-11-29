@@ -27,6 +27,22 @@ namespace Dot.ERP.Controllers
             return PartialView(menus);
         }
 
+        public ActionResult PartialModal()
+        {
+            return PartialView();
+        }
+
+        public ActionResult SearchForm()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult SearchSubmitForm()
+        {
+            return PartialView();
+        }
+
         /*
         public JsonResult MenuPage()
         {

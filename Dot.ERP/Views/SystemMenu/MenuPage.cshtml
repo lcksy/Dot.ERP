@@ -6,14 +6,12 @@
 
 @section cssSection{
     <link rel="stylesheet" href="~/plugins/media/css/DT_bootstrap.css" />
-
-    <link rel="stylesheet" href="~/plugins/media/css/bootstrap-modal.css" />
 }
 
 @section jsSection{
     @*<script type="text/javascript" src="~/plugins/media/js/jquery.dataTables.min.js"></script>*@
     <script type="text/javascript" src="~/plugins/media/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="~/plugins/media/js/DT_bootstrap.js"></script> 
+    <script type="text/javascript" src="~/plugins/media/js/DT_bootstrap.js"></script>
 
     <script type="text/javascript">
         $.fn.metronicGrid = function (options) {
@@ -83,28 +81,45 @@
         $.fn.toolBars = function (buttons) {
             $span = $("<span></span>");
             for (var i = 0; i < buttons.length; i++) {
-                var html = '<button class=\"' + buttons[i].class + '\"><i class=\"' + buttons[i].icon + '\"></i><span style="margin-left:5px;">' + buttons[i].name + '</span></button>';
-                $(html).on("click", buttons[i].click);  //?
-                $span.append($(html));
+                var $button = $('<button class=\"' + buttons[i].class + '\"><i class=\"' + buttons[i].icon + '\"></i><span style="margin-left:5px;">' + buttons[i].name + '</span></button>');
+                if (buttons[i].click)
+                    $button.on("click", buttons[i].click);
+                $span.append($button);
             }
 
-            $("#mainTable_wrapper div.span6").first().append($span);
+            var wrapperSelector = this.selector + "_wrapper div.span6";
+            $(wrapperSelector).first().append($span);
+        }
+
+        var addWindow = function () {
+            $.fn.modalmanager.defaults.resize = true;
+            $.fn.modalmanager.defaults.spinner = '<div class="loading-spinner fade" style="width: 200px; margin-left: -100px;"><img src="plugins/media/image/ajax-loading.gif" align="middle">&nbsp;<span style="font-weight:300; color: #eee; font-size: 18px; font-family:Open Sans;">&nbsp;Loading...</div>';
+            var $modal = $('#ajax-modal');
+
+            // create the backdrop and wait for next modal to be triggered
+            $('body').modalmanager('loading');
+
+            $modal.load('/SystemMenu/SearchForm', '', function () {
+                $modal.modal();
+            });
+
+            $modal.on('click', '.update', function () {
+                $modal.modal('loading');
+                setTimeout(function () {
+                    $modal.modal('loading')
+                          .find('.modal-body')
+                          .prepend('<div class="alert alert-info fade in">Updated!<button type="button" class="close" data-dismiss="alert"></button></div>');
+                }, 1000);
+            });
         }
 
         //表格结构
         var dataTable = $("#mainTable").metronicGrid({
             toolBars: [
-                { "class": "btn purple", "icon": "icon-search", "name": "搜索1", click: function () { alert("1"); } },
-                { "class": "btn purple", "icon": "icon-search", "name": "搜索2", click: function () { alert("2"); } },
-                { "class": "btn purple", "icon": "icon-search", "name": "搜索3", click: function () { alert("3"); } },
-                { "class": "btn purple", "icon": "icon-search", "name": "搜索4", click: function () { alert("4"); } },
-                { "class": "btn purple", "icon": "icon-search", "name": "搜索5", click: function () { alert("5"); } },
-                { "class": "btn purple", "icon": "icon-search", "name": "搜索6", click: function () { alert("6"); } },
-                { "class": "btn purple", "icon": "icon-search", "name": "搜索7", click: function () { alert("7"); } },
-                { "class": "btn purple", "icon": "icon-search", "name": "搜索8", click: function () { alert("8"); } },
-                { "class": "btn purple", "icon": "icon-search", "name": "搜索8", click: function () { alert("9"); } },
-                { "class": "btn purple", "icon": "icon-search", "name": "搜索8", click: function () { alert("10"); } },
-                { "class": "btn purple", "icon": "icon-search", "name": "搜索8", click: function () { alert("11"); } }
+                { "class": "btn purple", "icon": "icon-search", "name": "添加", click: addWindow },
+                { "class": "btn purple", "icon": "icon-search", "name": "删除", click: function () { alert("2"); } },
+                { "class": "btn purple", "icon": "icon-search", "name": "修改", click: function () { alert("3"); } },
+                { "class": "btn purple", "icon": "icon-search", "name": "查看", click: function () { alert("4"); } }
             ],
             columns: [
                 { "mDataProp": "Operation", "sTitle": "操作", "fnRender": function (obj) { return "<a href='#'>查看</a>&nbsp;&nbsp;<a href='#'>删除</a>&nbsp;&nbsp;<a href='#'>编辑</a>"; } },
@@ -120,11 +135,10 @@
         });
 
         //增加搜索按钮,并创建事件
-        Dot.appendSearchButtons("#formsearch", dataTable);
+        //Dot.appendSearchButtons("#formsearch", dataTable);
 
         //加载toolbar
         //Dot.loadToolbar(dataTable, toolbarBtnItemClick);
-
     </script>
 }
 
@@ -133,3 +147,4 @@
         <table id="mainTable"></table>
     </div>
 </div>
+@{ Html.RenderAction("PartialModal", "SystemMenu"); }
